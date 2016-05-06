@@ -1,6 +1,9 @@
 div{
 	*border: 2px solid black;
 }
+table, td, th{
+	*border: 2px solid black;
+}
 .logo{
 	float: left;
 	height: 130px;
@@ -83,4 +86,17 @@ div{
 }
 .formulario-gerado{
 	width: 800px;
+}
+.table-horas-form{
+	text-align: center;
+	width: 300px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.table-head{
+	text-align: center;
+}
+.selecionado{
+	background-color: #FF6347;
 }

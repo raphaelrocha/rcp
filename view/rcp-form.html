@@ -2,11 +2,11 @@
 	<p class="cabecalho-formulario">Registro Complementar de Ponto</p>
 	<p class="info-formulario">Preencha todos os campos abaixo e clique em gerar, para obter o documento devidamente preenchido.</p>
 	<form  name="canalForm">
-		<select class="form-control" ng-model="formulario.resp" ng-options="responsavel.sigla +' - '+ (responsavel.nome)  for responsavel in responsaveis | orderBy: 'sigla'">
+		<select class="form-control" ng-model="formulario.resp" ng-options="responsavel.SIGLA +' - '+ (responsavel.NOME)  for responsavel in responsaveis | orderBy: 'SIGLA'">
 			<option value="">Selecione um responsável</option>
 		</select>
 
-		<select class="form-control" ng-model="formulario.colab" ng-options="colaborador.sigla +' - '+ (colaborador.nome) for colaborador in colaboradores | orderBy: 'nome'">
+		<select class="form-control" ng-model="formulario.colab" ng-options="colaborador.SIGLA +' - '+ (colaborador.NOME) for colaborador in colaboradores | orderBy: 'NOME'">
 			<option value="">Selecione o colaborador</option>
 		</select>
 
@@ -18,9 +18,8 @@
 			<option value="">Selecione uma justificativa</option>
 		</select>
 
-		
-
 		<!--input class="form-control" type="text" ng-model="canal.nome" name ="tagNome" placeholder="Nome do Canal" ng-required="true" ng-minlength="10"/-->
+		<input class="form-control" type="text" ng-model="formulario.outros" name ="tagOutros" placeholder="Informe sua justificativa. (Máximo 50 caracteres)" ng-required="true"  ng-if="exibeOutros(formulario)" ui-maxtam ng-trim="false"/>
 		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Data" ui-date />
 		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Hora"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour/>
 		
@@ -31,32 +30,39 @@
 		<button class= "btn btn-primary btn-block" ng-click="addHorario(horario)">
 			Adicionar horário</button>
 
-
-		<div class="table-horas-1" ng-if="mostraTabela()">
-			<table class="table table-striped">
+		<div class="table-horas-form" ng-if="mostraTabela()">
+			<table class="table">
 				<thead>
-					<tr>
-						<th>
+					<tr >
+						<th class="table-head">
+							Remover
+						</th>
+						<th class="table-head">
 							Data
 						</th>
-						<th>
+						<th class="table-head">
 							Hora
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="horario in horarios">
-						<td>
+					<tr ng-class="{selecionado: horario.selecionado, negrito: horario.selecionado}" ng-repeat="horario in horarios" >
+						<td class="table-head">
+							<input type="checkbox" ng-model="horario.selecionado"/>
+						</td>
+						<td  class="table-head">
 							{{horario.data | date:'dd/MM/yyyy'}}
 						</td>
-						<td>
+						<td  class="table-head">
 							{{horario.hora}}
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<button class="btn btn-primary btn-block" ng-click="enviar(formulario)" ng-disabled="!checkHoras()">Gerar</button>
+		<button class= "btn btn-danger btn-block" ng-click="deletaHorario(horarios)" ng-if="isLinhaSelecionada(horarios)">
+		Remover horários selecionados</button>
+		<button class="btn btn-primary btn-block" ng-click="enviar(formulario)" ng-disabled="!checkHoras(formulario)">Gerar</button>
 	</form>
 </div>
 <div ng-include="'view/footer.html'" scope="" onload=""></div>

@@ -3,7 +3,8 @@ angular.module("icomptvApp").controller("mainController", function(
 	$filter, 
 	$http, 
 	$location,
-	formService
+	formService,
+	resColaboradores
 	){
 	//console.log("mainController iniciado.");
 	/*console.log(serialGenerator.generate());
@@ -91,8 +92,8 @@ angular.module("icomptvApp").controller("mainController", function(
 	$scope.horarios = [];
 
 	$scope.responsaveis = [
-		{sigla:"MAG",nome:"Marco Antônio Giágio"},
-		{sigla:"DME",nome:"Daniel do Nasciemento Melo"},
+		{SIGLA:"MAG",NOME:"Marco Antônio Giágio"},
+		{SIGLA:"DME",NOME:"Daniel do Nascimento Melo"},
 	];
 
 	$scope.ocorrencias = [
@@ -103,12 +104,21 @@ angular.module("icomptvApp").controller("mainController", function(
 	$scope.justificativas = [
 		{codigo:1,nome:"Realização de serviço externo"},
 		{codigo:2,nome:"Esquecimento da batida"},
+		{codigo:3,nome:"Viagem a trabalho"},
+		{codigo:4,nome:"Treinamento"},
+		{codigo:5,nome:"Atestado Médico"},
+		{codigo:6,nome:"Acompanhamento de Familiar ao Médico"},
+		{codigo:7,nome:"Erro na Digital"},
+		{codigo:8,nome:"REP Inoperante"},
+		{codigo:9,nome:"Outros - (Descrever no campo abaixo)"}
 	];
 
 	$scope.colaboradores = [
 		{sigla:"RLI",nome:"Raphael Lima da Rocha"},
 		{sigla:"EMQ",nome:"Elyseo Malveira"},
 	];
+
+	$scope.colaboradores = resColaboradores.data;
 
 	if($scope.horarios.length > 4){
 		$scope.showTable2=true;
@@ -117,15 +127,23 @@ angular.module("icomptvApp").controller("mainController", function(
 	$scope.addHorario = function(data) {
 		if(data){
 			if($scope.horarios.length < 8){
-				$scope.horarios.push(data);
+				if(data.data && data.hora){
+					if(data.data.length <10 || data.hora.length<5){
+						alert("Uma data e uma hora devem ser informadas.");
+					}else{
+						$scope.horarios.push(data);
+						delete $scope.horario;
+					}
+				}else{
+					alert("Uma data e uma hora devem ser informadas.");
+				}
 			}else{
 				alert("Você atingiu o limite máximo de horários que podem ser informados por RCP. Clique em gerar, e depois gere um movo formulário.");
-			}			
+			}
+
 		}else{
 			alert("Informe uma data e uma hora.");
 		}
-        
-        delete $scope.horario;
     }
 
     $scope.enviar = function(formulario) {
@@ -134,15 +152,111 @@ angular.module("icomptvApp").controller("mainController", function(
     	formService.addHorarios($scope.horarios);
         
         $location.path("/rcp");
-    }
+    };
 
-    $scope.checkHoras = function() {
-    	
-    	if($scope.horarios.length>0){
+    $scope.exibeOutros = function(formulario){
+		//console.log(formulario);
+		if(formulario){
+			if(formulario.just){
+				if(formulario.just.codigo == 9){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+
+			if(formulario.just.codigo == 9){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	};
+
+	var validaCampoOutros = function(formulario){
+		var validacao = true;
+		if($scope.exibeOutros(formulario)){
+    		console.log("exibe");
+    		if(formulario.outros){
+	    		if(formulario.outros.length>0){
+					validacao = true;
+	    		}else{
+	    			validacao = false;
+	    		}
+	    	}else{
+	    		validacao = false;
+	    	}
+    	}
+    	return validacao;
+	}
+
+    $scope.checkHoras = function(formulario) {
+    	var validacao = false;
+
+    	/*if($scope.horarios.length>0){
     		return true;
     	}else{
     		return false;
+    	}*/
+
+    	if(formulario){
+    		
+    		if(formulario.resp && formulario.colab && formulario.ocorr && formulario.just && $scope.horarios.length>0 && validaCampoOutros(formulario)){
+	    		validacao = true;
+	    	}else{
+	    		validacao = false;
+	    	}
+
+	    	
+
+
+	    	/*if(formulario.colab){
+	    		validacao = true;
+	    	}else{
+	    		validacao = false;
+	    	}
+
+	    	if(formulario.ocorr){
+	    		validacao = true;
+	    	}else{
+	    		validacao = false;
+	    	}
+
+	    	if(formulario.just){
+	    		validacao = true;
+	    	}else{
+	    		validacao = false;
+	    	}
+
+	    	if($scope.exibeOutros()){
+	    		if(formulario.outros){
+		    		if(formulario.outros.length>0){
+						validacao = true;
+		    		}else{
+		    			validacao = false;
+		    		}
+		    		console.log(validacao);
+		    	}else{
+		    		validacao = false;
+		    	}
+	    	}
+			
+
+	    	if($scope.horarios.length>0 && validacao == true){
+	    		validacao = true;
+	    	}else{
+	    		validacao = false;	
+	    	}*/
     	}
+    	else{
+    		validacao = false;
+    	}
+    	   
+    	return validacao;
     }
 
 	$scope.random = function() {
@@ -156,6 +270,24 @@ angular.module("icomptvApp").controller("mainController", function(
         	return false;
         }
     }
+
+    $scope.isLinhaSelecionada = function(horarios){
+		var isLinhaSelecionada = horarios.some(function(horario){
+			return horario.selecionado;
+		});
+		return isLinhaSelecionada;
+	}
+
+	$scope.deletaHorario = function(horarios){
+		$scope.horarios = horarios.filter(function(horario){
+			if(!horario.selecionado){
+				return horario;
+			}
+		});
+	}
+
+	
+
 
     
 });

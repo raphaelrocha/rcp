@@ -20,11 +20,11 @@ angular.module("icomptvApp").config(function($routeProvider){
 	$routeProvider.when("/formulario",{
 		templateUrl: "view/rcp-form.html",
 		controller: "mainController",
-		/*resolve:{
+		resolve:{
 			resColaboradores: function(connApi){
 				return connApi.getColaboradores();
 			}
-		}*/
+		}
 	});
 	$routeProvider.when("/canal",{
 		templateUrl: "view/canal.html",

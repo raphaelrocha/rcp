@@ -17,27 +17,27 @@
 		<p class="ocorrencia-txt">Ocorrência: {{ocorrencia}}.</p>
 	</div>
 	<div class="justificativa">
-		<p class="justificativa-txt">Justificativa: {{justificativa}}.</p>
+		<p class="justificativa-txt">Justificativa: {{justificativa}}</p>
 	</div>
 	<hr/>
 	<div class="table-horas-1">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>
+					<th class="table-head">
 						Data
 					</th>
-					<th>
+					<th class="table-head">
 						Hora
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="horario in horarios | limitTo:4">
-					<td>
+					<td class="table-head">
 						{{horario.data | date:'dd/MM/yyyy'}}
 					</td>
-					<td>
+					<td class="table-head">
 						{{horario.hora}}
 					</td>
 				</tr>
@@ -46,22 +46,22 @@
 	</div>
 	<div class="table-horas-2" ng-show="showTable2">
 		<table class="table table-striped">
-			<thead>
+			<thead >
 				<tr>
-					<th>
+					<th class="table-head">
 						Data
 					</th>
-					<th>
+					<th class="table-head">
 						Hora
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="horario in horarios | startFrom:4">
-					<td>
+					<td class="table-head">
 						{{horario.data | date:'dd/MM/yyyy'}}
 					</td>
-					<td>
+					<td class="table-head">
 						{{horario.hora}}
 					</td>
 				</tr>

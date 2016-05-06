@@ -85,10 +85,14 @@ angular.module("icomptvApp").controller("printFormController", function(
 	var formulario = formService.getFormulario();
 	$scope.horarios = formService.getHorarios();
 
-	$scope.responsavel = formulario.resp.sigla+" \\ "+formulario.resp.nome;
-	$scope.colaborador = formulario.colab.sigla+" \\ "+formulario.colab.nome;
+	$scope.responsavel = formulario.resp.SIGLA+" \\ "+formulario.resp.NOME;
+	$scope.colaborador = formulario.colab.SIGLA+" \\ "+formulario.colab.NOME;
 	$scope.ocorrencia = formulario.ocorr.nome;
 	$scope.justificativa = formulario.just.nome;
+
+	if(formulario.outros){
+		$scope.justificativa = "Outros - " + formulario.outros;
+	}
 
 	/*$scope.horarios = [
 		{data:"01/03/2016",hora:"13:00"},
