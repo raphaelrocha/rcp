@@ -20,11 +20,9 @@
 
 		<!--input class="form-control" type="text" ng-model="canal.nome" name ="tagNome" placeholder="Nome do Canal" ng-required="true" ng-minlength="10"/-->
 		<input class="form-control" type="text" ng-model="formulario.outros" name ="tagOutros" placeholder="Informe sua justificativa. (Máximo 50 caracteres)" ng-required="true"  ng-if="exibeOutros(formulario)" ui-maxtam ng-trim="false"/>
-		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Data" ui-date />
-		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Hora"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour/>
+		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Data (Apenas números)" ui-date />
+		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Hora (Apenas números)"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour/>
 		
-		
-
 		<!--button class= "btn btn-primary btn-block" ng-click="addCanal(canal)" ng-disabled="!canal.nome || !canal.usuarios || !canal.categoria">Adicionar um canal</button-->
 
 		<button class= "btn btn-primary btn-block" ng-click="addHorario(horario)">
