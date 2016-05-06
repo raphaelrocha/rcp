@@ -1,0 +1,75 @@
+<div class="formulario-gerado">
+	<div class="logo">
+		<img src="img/logo.png">
+	</div>
+	<div class="cabecalho">
+		<p class="cabecalho-txt"> <h2>RCP - Registro Complementar de Ponto</h2> </p>
+	</div>
+	<hr/>
+	<div class="responsavel">
+		<p class="responsavel-txt">Responsável: {{responsavel}}</p>
+	</div>
+	<div class="colaborador">
+		<p class="colaborador-txt">Colaborador: {{colaborador}}</p>
+	</div>
+	<hr/>
+	<div class="ocorrencia">
+		<p class="ocorrencia-txt">Ocorrência: {{ocorrencia}}.</p>
+	</div>
+	<div class="justificativa">
+		<p class="justificativa-txt">Justificativa: {{justificativa}}.</p>
+	</div>
+	<hr/>
+	<div class="table-horas-1">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Data
+					</th>
+					<th>
+						Hora
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="horario in horarios | limitTo:4">
+					<td>
+						{{horario.data | date:'dd/MM/yyyy'}}
+					</td>
+					<td>
+						{{horario.hora}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-horas-2" ng-show="showTable2">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Data
+					</th>
+					<th>
+						Hora
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="horario in horarios | startFrom:4">
+					<td>
+						{{horario.data | date:'dd/MM/yyyy'}}
+					</td>
+					<td>
+						{{horario.hora}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr/>
+	<div class="bottom-form">
+		<img src="/rcp/img/rcp_bottom.png">
+	</div>
+</div>

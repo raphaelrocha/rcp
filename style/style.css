@@ -1,0 +1,86 @@
+div{
+	*border: 2px solid black;
+}
+.logo{
+	float: left;
+	height: 130px;
+	margin: 10px;
+}
+.cabecalho{
+	float: rigth;
+	text-align: center;
+	height: 130px;
+	padding-top: 10px;
+	*line-height: 90px;
+	*margin-top: 90px;
+}
+.bottom-form{
+	text-align: center;
+}
+.cabecalho-txt{
+	margin-top: 40px;
+}
+.responsavel-txt {
+	font-size: 20px;
+	margin: 5px;
+	margin-left: 30px;
+	font-weight: bold;
+}
+.colaborador-txt{
+	font-size: 20px;
+	margin: 5px;
+	margin-left: 30px;
+	font-weight: bold;
+}
+.ocorrencia-txt{
+	font-size: 15px;
+	margin: 5px;
+	font-weight: bold;
+	margin-left: 30px;
+}
+.justificativa-txt{
+	font-size: 15px;
+	margin: 5px;
+	margin-left: 30px;
+	font-weight: bold;
+}
+.table-horas-1 {
+	margin-left: 60px;
+	margin-right:  auto;
+	float: left;
+	width: 300px;
+}
+.table-horas-2 {
+	margin-left: auto;
+	margin-right:  60px;
+	float: right;
+	width: 300px;
+}
+.jumbotron{
+	padding-top:10px; 
+	padding-bottom:10px; 
+	width: 600px;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.footer{
+	text-align: center;
+}
+.form-control{
+	margin-top:10px;
+}
+.btn{
+	margin-top:10px;
+}
+.cabecalho-formulario{
+	margin:10px;
+}
+.info-formulario{
+	margin-top: 20px;
+	font-size: 14px;
+}
+.formulario-gerado{
+	width: 800px;
+}

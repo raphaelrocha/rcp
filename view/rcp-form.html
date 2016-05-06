@@ -1,0 +1,62 @@
+<div class="jumbotron">
+	<p class="cabecalho-formulario">Registro Complementar de Ponto</p>
+	<p class="info-formulario">Preencha todos os campos abaixo e clique em gerar, para obter o documento devidamente preenchido.</p>
+	<form  name="canalForm">
+		<select class="form-control" ng-model="formulario.resp" ng-options="responsavel.sigla +' - '+ (responsavel.nome)  for responsavel in responsaveis | orderBy: 'sigla'">
+			<option value="">Selecione um responsável</option>
+		</select>
+
+		<select class="form-control" ng-model="formulario.colab" ng-options="colaborador.sigla +' - '+ (colaborador.nome) for colaborador in colaboradores | orderBy: 'nome'">
+			<option value="">Selecione o colaborador</option>
+		</select>
+
+		<select class="form-control" ng-model="formulario.ocorr" ng-options="ocorrencia.nome for ocorrencia in ocorrencias | orderBy: 'nome'">
+			<option value="">Selecione um tipo de ocorrência</option>
+		</select>
+
+		<select class="form-control" ng-model="formulario.just" ng-options="justificativa.nome for justificativa in justificativas | orderBy: 'nome'">
+			<option value="">Selecione uma justificativa</option>
+		</select>
+
+		
+
+		<!--input class="form-control" type="text" ng-model="canal.nome" name ="tagNome" placeholder="Nome do Canal" ng-required="true" ng-minlength="10"/-->
+		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Data" ui-date />
+		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Hora"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour/>
+		
+		
+
+		<!--button class= "btn btn-primary btn-block" ng-click="addCanal(canal)" ng-disabled="!canal.nome || !canal.usuarios || !canal.categoria">Adicionar um canal</button-->
+
+		<button class= "btn btn-primary btn-block" ng-click="addHorario(horario)">
+			Adicionar horário</button>
+
+
+		<div class="table-horas-1" ng-if="mostraTabela()">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>
+							Data
+						</th>
+						<th>
+							Hora
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="horario in horarios">
+						<td>
+							{{horario.data | date:'dd/MM/yyyy'}}
+						</td>
+						<td>
+							{{horario.hora}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<button class="btn btn-primary btn-block" ng-click="enviar(formulario)" ng-disabled="!checkHoras()">Gerar</button>
+	</form>
+</div>
+<div ng-include="'view/footer.html'" scope="" onload=""></div>
