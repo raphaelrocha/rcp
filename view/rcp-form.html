@@ -10,11 +10,11 @@
 			<option value="">Selecione o colaborador</option>
 		</select>
 
-		<select class="form-control" ng-model="formulario.ocorr" ng-options="ocorrencia.nome for ocorrencia in ocorrencias | orderBy: 'nome'">
+		<select class="form-control" ng-model="formulario.ocorr" ng-options="ocorrencia.DESCRICAO for ocorrencia in ocorrencias | orderBy: 'DESCRICAO'">
 			<option value="">Selecione um tipo de ocorrência</option>
 		</select>
 
-		<select class="form-control" ng-model="formulario.just" ng-options="justificativa.nome for justificativa in justificativas | orderBy: 'nome'">
+		<select class="form-control" ng-model="formulario.just" ng-options="justificativa.DESCRICAO for justificativa in justificativas | orderBy: 'DESCRICAO'">
 			<option value="">Selecione uma justificativa</option>
 		</select>
 

@@ -2,38 +2,20 @@ angular.module("icomptvApp").factory("connApi", function($http, config, $localSt
 	var _getColaboradores = function(){
 		//return $http.get(config.baseUrl+"/mocs/ws.php");
 		//return $http.get(config.baseUrl+"/CertiService/Colaboradores");
-		return $http.get(config.baseUrl+"/tqeguyd67737691gtdxs7dasytf3732");
+		//return $http.get(config.baseUrl+"/tqeguyd67737691gtdxs7dasytf3732");
+		return $http.get(config.baseUrl+"/Colaboradores");
 		//return $http.get(config.baseUrl+"/api/v1/videos");
 	};
-	var _getVideo = function(id){
-		//return $http.get(config.baseUrl+"/mocs/video.php");
-		return $http.get(config.baseUrl+"/videos/"+id);
-		//return $http.get(config.baseUrl+"/api/v1/videos/"+id);
+	var _getDiretores = function(){
+		return $http.get(config.baseUrl+"/Diretores");
 	};
-	var _addVideo = function(video){
-		$http.post(config.baseUrl+"/videos",video);
+	var _getJustificativas = function(){
+		return $http.get(config.baseUrl+"/Justificativas");
 	};
-	var _getAuth = function(data){
-		$http.post(config.baseUrl+"/auth",data);
+	var _getOcorrencias = function(){
+		return $http.get(config.baseUrl+"/Ocorrencias");
 	};
 
-	var _getCanais = function(){
-		//return $http.get(config.baseUrl+"/mocs/ws.php");
-		return $http.get(config.baseUrl+"/canais");
-		//return $http.get(config.baseUrl+"/api/v1/videos");
-	};
-	var _getCanal = function(id){
-		//return $http.get(config.baseUrl+"/mocs/video.php");
-		return $http.get(config.baseUrl+"/canais/"+id);
-		//return $http.get(config.baseUrl+"/api/v1/videos/"+id);
-	};
-
-	var _getPlaylists = function(){
-		return $http.get(config.baseUrl+"/playlists");
-	};
-	var _getPlaylist = function(id){
-		return $http.get(config.baseUrl+"/playlists/"+id);
-	};
 
 	/////
 	
@@ -93,13 +75,10 @@ angular.module("icomptvApp").factory("connApi", function($http, config, $localSt
 
 	return {
 		getColaboradores: _getColaboradores,
-		getVideo: _getVideo,
-		addVideo: _addVideo,
-		getAuth: _getAuth,
-		getCanais: _getCanais,
-		getCanal: _getCanal,
-		getPlaylist: _getPlaylist,
-		getPlaylists: _getPlaylists,
+		getDiretores: _getDiretores,
+		getJustificativas: _getJustificativas,
+		getOcorrencias: _getOcorrencias,
+	
 		save: _save,
 		sign: _sign,
 		me: _me,
