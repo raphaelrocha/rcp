@@ -2,25 +2,44 @@
 	<p class="cabecalho-formulario">Registro Complementar de Ponto</p>
 	<p class="info-formulario">Preencha todos os campos abaixo e clique em gerar, para obter o documento devidamente preenchido.</p>
 	<form  name="canalForm">
+
+		<h5 align="left">Diretor responsável </h5>
+
 		<select class="form-control" ng-model="formulario.resp" ng-options="responsavel.SIGLA +' - '+ (responsavel.NOME)  for responsavel in responsaveis | orderBy: 'SIGLA'">
 			<option value="">Selecione um responsável</option>
 		</select>
+
+		<h5 align="left">Colaborador </h5>
 
 		<select class="form-control" ng-model="formulario.colab" ng-options="colaborador.SIGLA +' - '+ (colaborador.NOME) for colaborador in colaboradores | orderBy: 'NOME'">
 			<option value="">Selecione o colaborador</option>
 		</select>
 
+		<h5 align="left">Tipo de ocorrência </h5>
 		<select class="form-control" ng-model="formulario.ocorr" ng-options="ocorrencia.DESCRICAO for ocorrencia in ocorrencias | orderBy: 'DESCRICAO'">
 			<option value="">Selecione um tipo de ocorrência</option>
 		</select>
 
+		<div ng-if="exibeOutrosOcorrencia(formulario)">
+			<h5 align="left">Descrição da ocorrêcia "Outros" </h5>
+			<input class="form-control" type="text" ng-model="formulario.outrosOcorrencia" name ="tagOutrosOcorrencia" placeholder="Informe o tipo de ocorrência. (Máximo 50 caracteres)" ng-required="true"   ui-maxtam ng-trim="false"/>
+		</div>
+		
+		<h5 align="left">Tipo de justificativa </h5>
 		<select class="form-control" ng-model="formulario.just" ng-options="justificativa.DESCRICAO for justificativa in justificativas | orderBy: 'DESCRICAO'">
 			<option value="">Selecione uma justificativa</option>
 		</select>
 
 		<!--input class="form-control" type="text" ng-model="canal.nome" name ="tagNome" placeholder="Nome do Canal" ng-required="true" ng-minlength="10"/-->
-		<input class="form-control" type="text" ng-model="formulario.outros" name ="tagOutros" placeholder="Informe sua justificativa. (Máximo 50 caracteres)" ng-required="true"  ng-if="exibeOutros(formulario)" ui-maxtam ng-trim="false"/>
+		<div  ng-if="exibeOutros(formulario)">
+			<h5 align="left">Descrição da justificativa "Outros" </h5>
+			<input class="form-control" type="text" ng-model="formulario.outros" name ="tagOutros" placeholder="Informe sua Justificativa. (Máximo 50 caracteres)" ng-required="true"  ui-maxtam ng-trim="false"/>
+		</div>
+		
+		<h5 align="left">Data </h5>
 		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Data (Apenas números)" ui-date />
+		
+		<h5 align="left">Hora </h5>
 		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Hora (Apenas números)"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour/>
 		
 		<!--button class= "btn btn-primary btn-block" ng-click="addCanal(canal)" ng-disabled="!canal.nome || !canal.usuarios || !canal.categoria">Adicionar um canal</button-->

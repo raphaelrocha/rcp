@@ -20,6 +20,9 @@ angular.module("icomptvApp").controller("printFormController", function(
 	if(formulario.outros){
 		$scope.justificativa = "Outros - " + formulario.outros;
 	}
+	if(formulario.outrosOcorrencia){
+		$scope.ocorrencia = "Outros - " + formulario.outrosOcorrencia;
+	}
 
 	if($scope.horarios.length > 4){
 		$scope.showTable2=true;

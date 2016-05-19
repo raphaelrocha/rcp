@@ -81,6 +81,24 @@ angular.module("icomptvApp").controller("mainController", function(
 		}
 	};
 
+	$scope.exibeOutrosOcorrencia = function(formulario){
+		//console.log(formulario);
+		if(formulario){
+			if(formulario.ocorr){
+				if(formulario.ocorr.ID == 2){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+
+		}else{
+			return false;
+		}
+	};
+
 	var validaCampoOutros = function(formulario){
 		var validacao = true;
 		if($scope.exibeOutros(formulario)){
@@ -98,12 +116,36 @@ angular.module("icomptvApp").controller("mainController", function(
     	return validacao;
 	}
 
+	var validaCampoOutrosOcorrencia = function(formulario){
+		var validacao = true;
+		if($scope.exibeOutrosOcorrencia(formulario)){
+    		console.log("exibe");
+    		if(formulario.outrosOcorrencia){
+	    		if(formulario.outrosOcorrencia.length>0){
+					validacao = true;
+	    		}else{
+	    			validacao = false;
+	    		}
+	    	}else{
+	    		validacao = false;
+	    	}
+    	}
+    	return validacao;
+	}
+
     $scope.checkHoras = function(formulario) {
     	var validacao = false;
 
     	if(formulario){
     		
-    		if(formulario.resp && formulario.colab && formulario.ocorr && formulario.just && $scope.horarios.length>0 && validaCampoOutros(formulario)){
+    		if(formulario.resp &&
+				formulario.colab &&
+				formulario.ocorr &&
+				formulario.just && 
+				$scope.horarios.length>0 
+				&& validaCampoOutros(formulario) 
+				&& validaCampoOutrosOcorrencia(formulario)
+				){
 	    		validacao = true;
 	    	}else{
 	    		validacao = false;
