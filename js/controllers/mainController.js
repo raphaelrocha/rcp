@@ -7,9 +7,11 @@ angular.module("icomptvApp").controller("mainController", function(
 	resColaboradores,
 	resDiretores,
 	resJustificativas,
-	resOcorrencias
+	resOcorrencias,
+	appLog
 	){
 
+	appLog.log("mainController iniciado");
 	$scope.showTable2=false;
 	$scope.responsavel = "Marco";
 	$scope.colaborador = "Raphael";

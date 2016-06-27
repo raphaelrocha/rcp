@@ -3,22 +3,18 @@ angular.module("icomptvApp").factory("connApi", function($http, config, $localSt
 		//return $http.get(config.baseUrl+"/mocs/ws.php");
 		//return $http.get(config.baseUrl+"/CertiService/Colaboradores");
 		//return $http.get(config.baseUrl+"/tqeguyd67737691gtdxs7dasytf3732");
-		return $http.get(config.baseUrl+"/Colaboradores");
+		return $http.get(config.baseUrl+"/api/colaboradores");
 		//return $http.get(config.baseUrl+"/api/v1/videos");
 	};
 	var _getDiretores = function(){
-		return $http.get(config.baseUrl+"/Diretores");
+		return $http.get(config.baseUrl+"/api/diretores");
 	};
 	var _getJustificativas = function(){
-		return $http.get(config.baseUrl+"/Justificativas");
+		return $http.get(config.baseUrl+"/api/justificativas");
 	};
 	var _getOcorrencias = function(){
-		return $http.get(config.baseUrl+"/Ocorrencias");
+		return $http.get(config.baseUrl+"/api/ocorrencias");
 	};
-
-
-	/////
-	
 
 	function changeUser(user) {
         angular.extend(currentUser, user);

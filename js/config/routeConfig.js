@@ -16,8 +16,7 @@ angular.module("icomptvApp").config(function($routeProvider){
 			},
 			resJustificativas: function(connApi){
 				return connApi.getJustificativas();
-			}
-			,
+			},
 			resOcorrencias: function(connApi){
 				return connApi.getOcorrencias();
 			}
