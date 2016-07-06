@@ -1,4 +1,4 @@
-angular.module("icomptvApp").directive("uiDate", function($filter){
+angular.module("rcpApp").directive("uiDate", function($filter){
 	return{
 		require: "ngModel",
 		link: function(scope, element, attrs, ctrl){

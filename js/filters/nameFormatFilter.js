@@ -1,4 +1,4 @@
-angular.module('icomptvApp').filter("nameFormat", function(){
+angular.module('rcpApp').filter("nameFormat", function(){
 	return function(input){
 		var listaDeNomes = input.split(" ");
 		var listaDeNomesFormatada = listaDeNomes.map(function(nome){

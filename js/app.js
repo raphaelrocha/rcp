@@ -1,9 +1,14 @@
-angular.module("icomptvApp",["ngMessages", "ngRoute", "ngStorage"]);
+angular.module("rcpApp",[
+    "ngMessages",
+     "ngRoute",
+      "ngStorage",
+      'ngProgress'
+      ]);
 
 /*
 Esta diretiva garante o funcionamento dos sliders após o carregamento com o ng-repeat
 */
-angular.module("icomptvApp").directive('onFinishRender', function ($timeout) {
+angular.module("rcpApp").directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -23,7 +28,7 @@ angular.module("icomptvApp").directive('onFinishRender', function ($timeout) {
     }
 });
 
-angular.module("icomptvApp").filter('trustAsResourceUrl', ['$sce', function($sce) {
+angular.module("rcpApp").filter('trustAsResourceUrl', ['$sce', function($sce) {
     return function(val) {
         return $sce.trustAsResourceUrl(val);
     };

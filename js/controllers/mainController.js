@@ -1,14 +1,18 @@
-angular.module("icomptvApp").controller("mainController", function(
+angular.module("rcpApp").controller("mainController", function(
 	$scope,
 	$filter, 
 	$http, 
 	$location,
 	formService,
-	resColaboradores,
-	resDiretores,
-	resJustificativas,
-	resOcorrencias,
-	appLog
+	//resColaboradores,
+	//resDiretores,
+	//resJustificativas,
+	//resOcorrencias,
+	appLog,
+	connApi,
+	ngProgressFactory,
+	$timeout,
+	config
 	){
 
 	appLog.log("mainController iniciado");
@@ -18,13 +22,77 @@ angular.module("icomptvApp").controller("mainController", function(
 	$scope.ocorrencia = "Ausência de batida";
 	$scope.justificativa = "Isso mesmo.";
 
+	$scope.progressbar = ngProgressFactory.createInstance();
+  	$scope.progressbar.setHeight(config.progressbarHeight);
+  	$scope.progressbar.setColor(config.progressbarColor);
+
+  	
+  	var errorLogObj = {};
+  	$scope.loadData = function(){
+  		$scope.progressbar.start();
+  		return connApi.getDiretores().then(
+	  		function(response){
+	  			$scope.responsaveis = response.data;
+	  			//$scope.progressbar.complete();
+	  			return connApi.getColaboradores().then(
+			  		function(response){
+			  			$scope.colaboradores = response.data;
+			  			//$scope.progressbar.complete();
+			  			return connApi.getOcorrencias().then(
+					  		function(response){
+					  			$scope.ocorrencias = response.data;
+					  			//$scope.progressbar.complete();
+					  			return connApi.getJustificativas().then(
+							  		function(response){
+							  			$scope.justificativas = response.data;
+							  			$scope.progressbar.complete();
+							  			return true;
+							  		},
+							  		function(response){
+							  			errorLogObj.justificativas = response.data;
+							  			$scope.progressbar.setColor(config.progressbarColor2);
+										$scope.progressbar.complete();
+										return false;	
+							  		}
+							  	);
+					  		},
+					  		function(response){
+					  			errorLogObj.ocorrencias = response.data;
+					  			$scope.progressbar.setColor(config.progressbarColor2);
+					  			$scope.progressbar.complete();
+					  			return false;	
+					  		}
+					  	);
+			  		},
+			  		function(response){
+			  			errorLogObj.colaboradores = response.data;
+			  			$scope.progressbar.setColor(config.progressbarColor2);
+			  			$scope.progressbar.complete();
+			  			return false;	
+			  		}
+			  	);
+	  		},
+	  		function(response){
+	  			errorLogObj.diretores = response.data;
+	  			$scope.progressbar.setColor(config.progressbarColor2);
+	  			$scope.progressbar.complete();
+	  			return false;	
+	  		}
+	  	);
+  	};
+  	
+  	$scope.loadData().then(function(response){
+  		if(!response){
+  			appLog.alert("Impossível conectar ao servidor.",errorLogObj);
+  		}
+  	});
+  	
+  	$timeout(function () {
+  			
+  	});
+
 	$scope.horarios = [];
 
-	$scope.ocorrencias = resOcorrencias.data;
-
-	$scope.justificativas = resJustificativas.data;
-	$scope.colaboradores = resColaboradores.data;
-	$scope.responsaveis = resDiretores.data;
 
 	if($scope.horarios.length > 4){
 		$scope.showTable2=true;
@@ -187,6 +255,8 @@ angular.module("icomptvApp").controller("mainController", function(
 			}
 		});
 	}
+
+	
 
 	/*var test = function(){
 		$http.get("http://192.168.3.19:8081/Colaboradores").success(function(data, status){

@@ -1,4 +1,4 @@
-/*angular.module("icomptvApp").directive("uiAccordions", function($filter){
+/*angular.module("rcpApp").directive("uiAccordions", function($filter){
 	return{
 		controller: function($scope, $element, $attrs){
 			var accordions = [];
@@ -14,7 +14,7 @@
 	};
 });*/
 
-angular.module("icomptvApp").directive("uiHeader", function($filter){
+angular.module("rcpApp").directive("uiHeader", function($filter){
 	return{
 		templateUrl: "view/header.html",
 		transclude: true,

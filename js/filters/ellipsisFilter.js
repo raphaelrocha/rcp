@@ -1,4 +1,4 @@
-angular.module("icomptvApp").filter("ellipsisFormat", function(){
+angular.module("rcpApp").filter("ellipsisFormat", function(){
 	return function (input, size){
 		if(input.length <= size){
 			return input;

@@ -1,11 +1,18 @@
-angular.module("icomptvApp").controller("printFormController", function(
+angular.module("rcpApp").controller("printFormController", function(
 	$scope,
 	$filter, 
 	$http, 
 	$location,
-	formService
+	formService,
+	ngProgressFactory,
+	config
 	){
 	console.log("mainController iniciado.");
+
+	$scope.progressbar = ngProgressFactory.createInstance();
+  	$scope.progressbar.setHeight(config.progressbarHeight);
+  	$scope.progressbar.setColor(config.progressbarColor);
+  	$scope.progressbar.start();
 	
 	$scope.showTable2=false;
 
@@ -36,5 +43,7 @@ angular.module("icomptvApp").controller("printFormController", function(
 	$scope.random = function() {
         return 0.5 - Math.random();
     }
+
+    $scope.progressbar.complete();
 
 });

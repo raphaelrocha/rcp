@@ -1,4 +1,4 @@
-angular.module("icomptvApp").service('appLog', function(
+angular.module("rcpApp").service('appLog', function(
   config,
   $timeout,
   $window

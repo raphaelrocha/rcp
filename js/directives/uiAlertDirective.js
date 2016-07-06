@@ -1,4 +1,4 @@
-angular.module("icomptvApp").directive("uiAlert", function(){
+angular.module("rcpApp").directive("uiAlert", function(){
 	return{
 		templateUrl: "view/alert.html",
 		replace: true,

@@ -1,4 +1,4 @@
-angular.module("icomptvApp").controller("headerFooterController", function(
+angular.module("rcpApp").controller("headerFooterController", function(
 	$scope,
 	$filter, 
 	$http, 

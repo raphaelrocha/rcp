@@ -1,4 +1,4 @@
-angular.module("icomptvApp").directive("uiHour", function($filter){
+angular.module("rcpApp").directive("uiHour", function($filter){
 	return{
 		require: "ngModel",
 		link: function(scope, element, attrs, ctrl){

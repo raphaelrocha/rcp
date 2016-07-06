@@ -1,4 +1,4 @@
-angular.module("icomptvApp").directive("uiMaxtam", function($filter){
+angular.module("rcpApp").directive("uiMaxtam", function($filter){
 	return{
 		require: "ngModel",
 		link: function(scope, element, attrs, ctrl){

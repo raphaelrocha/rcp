@@ -1,4 +1,4 @@
-angular.module("icomptvApp").config(function($routeProvider){
+angular.module("rcpApp").config(function($routeProvider){
 	$routeProvider.when("/rcp",{
 		templateUrl: "view/rcp.html",
 		controller: "printFormController",
@@ -7,7 +7,7 @@ angular.module("icomptvApp").config(function($routeProvider){
 	$routeProvider.when("/formulario",{
 		templateUrl: "view/rcp-form.html",
 		controller: "mainController",
-		resolve:{
+		/*resolve:{
 			resColaboradores: function(connApi){
 				return connApi.getColaboradores();
 			},
@@ -20,7 +20,7 @@ angular.module("icomptvApp").config(function($routeProvider){
 			resOcorrencias: function(connApi){
 				return connApi.getOcorrencias();
 			}
-		}
+		}*/
 	});
 	
 	$routeProvider.when("/teste",{

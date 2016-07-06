@@ -1,4 +1,4 @@
-angular.module("icomptvApp").factory("connApi", function($http, config, $localStorage){
+angular.module("rcpApp").factory("connApi", function($http, config, $localStorage){
 	var _getColaboradores = function(){
 		//return $http.get(config.baseUrl+"/mocs/ws.php");
 		//return $http.get(config.baseUrl+"/CertiService/Colaboradores");

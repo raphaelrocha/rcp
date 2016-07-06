@@ -1,4 +1,4 @@
-angular.module("icomptvApp").filter('startFrom', function() {
+angular.module("rcpApp").filter('startFrom', function() {
     return function(input, start) {
         if(input) {
             start = +start; //parse to int

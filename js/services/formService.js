@@ -1,4 +1,4 @@
-angular.module("icomptvApp").service('formService', function() {
+angular.module("rcpApp").service('formService', function() {
   var formulario;
   var horarios;
 

@@ -63,7 +63,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-class="{selecionado: horario.selecionado, negrito: horario.selecionado}" ng-repeat="horario in horarios" >
+					<tr ng-class="{selecionado: horario.selecionado, negrito: horario.selecionado}" ng-repeat="horario in horarios | orderBy: ['data','hora']" >
 						<td class="table-head">
 							<input type="checkbox" ng-model="horario.selecionado"/>
 						</td>
