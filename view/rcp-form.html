@@ -1,7 +1,18 @@
+<style type="text/css">
+	#datepicker{
+		font-size: 15px;
+		width: 150px;
+	}
+	#hourpicker{
+		font-size: 15px;
+		width: 150px;
+	}
+</style>
+
 <div class="jumbotron">
 	<p class="cabecalho-formulario">Registro Complementar de Ponto</p>
 	<p class="info-formulario">Preencha todos os campos abaixo e clique em gerar, para obter o documento devidamente preenchido.</p>
-	<form  name="canalForm">
+	<form name="canalForm">
 
 		<h5 align="left">Diretor responsável </h5>
 
@@ -31,16 +42,25 @@
 		</select>
 
 		<!--input class="form-control" type="text" ng-model="canal.nome" name ="tagNome" placeholder="Nome do Canal" ng-required="true" ng-minlength="10"/-->
+
 		<div  ng-if="exibeOutros(formulario)">
 			<h5 align="left">Descrição da justificativa "Outros" </h5>
 			<input class="form-control" type="text" ng-model="formulario.outros" name ="tagOutros" placeholder="Informe sua Justificativa. (Máximo 50 caracteres)" ng-required="true"  ui-maxtam ng-trim="false"/>
 		</div>
-		
+
+
 		<h5 align="left">Data </h5>
-		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Data (Apenas números)" ui-date />
-		
+		<input class="form-control" type="text" ng-model="horario.data" name ="tagData" placeholder="Apenas números" ui-date datepicker id="datepicker" />
+
 		<h5 align="left">Hora </h5>
-		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Hora (Apenas números)"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour/>
+		<input class="form-control" type="text" ng-model="horario.hora" name ="tagTelefone" placeholder="Apenas números"  ng-ng-pattern="/^\d{2}:\d{2}$/" ui-hour id="hourpicker"/>
+
+
+		
+
+		
+		
+		
 		
 		<!--button class= "btn btn-primary btn-block" ng-click="addCanal(canal)" ng-disabled="!canal.nome || !canal.usuarios || !canal.categoria">Adicionar um canal</button-->
 
